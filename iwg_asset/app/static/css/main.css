@@ -1,0 +1,510 @@
+body{
+	font: 16px "microsoft yahei", Arial;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+}
+*{
+	outline: 0;
+}
+#note{
+	position:absolute;
+	width:200px;
+	padding:10px;
+	background:#eee;
+	border:1px solid #ccc;
+	border-radius: 15px;
+	left:40%;
+	z-index:10000;
+	display:none;
+	background: #F7E8AC;
+	text-align: center;
+	font-size: 14px;
+} 
+a{
+	text-decoration: none;
+}
+ul li{
+	list-style: none;
+}
+.content{
+	position: fixed;
+	top: 0;
+    width:98%;
+    height:70px;	
+    margin: auto;
+    padding:0 1%;
+    font-family: "Microsoft Yahei", Arial, sans-serif;
+    box-sizing: content-box;
+    color:#333;
+    background-color: #fff;
+}
+.content:after{
+    content:"";
+    display:table;
+    height:0;
+    visibility:visible;
+    clear:both;
+}
+.logo{
+	float: left;
+	line-height: 70px;			
+	width: 170px;
+    height: 70px;
+}
+.nav, .nav>li{
+    margin: 0;
+    float: left;
+    /*border: 1px solid #000;*/
+    list-style: none;
+    height: 30px;
+}
+.nav{
+	width: 500px;
+	margin-top: 40px;
+	margin-left: 40px;
+    padding-left: 0;
+    overflow: hidden;
+}
+.nav>li{
+    width: 100px;
+    font-size: 16px;
+	text-align: center;
+	margin-left: 10px;
+}
+.nav li a{
+    color: inherit;
+    position: relative;
+    padding: 5px 0px;
+}
+
+.user_info{
+	float: right;
+	margin-top: 37px;
+	width: 50px;
+}
+.user_info li{
+	list-style: none;
+	font-size: 14px;
+}
+.menu_logout{
+	float: right;
+	border: 2px solid #30a0d5;
+    background-color: #30a0d5; 
+    color: #fff;
+	padding: 5px 20px;
+	border-radius: 30px;
+	text-align: center;
+	margin-right: 50px;
+}
+.menu_logout:hover, #show_modify_modal:hover, #logOut:hover{
+    background-color:  #fff;
+    color: #30a0d5;
+}
+.nav .menu{
+    height: 24px;
+    border-bottom: 2px solid transparent;
+}
+.nav .menu:hover{
+	color: #323B55;
+    border-bottom-color: #323B55;
+}
+
+.nav .menu_click{
+	color: #323B55;
+    border-bottom-color: #323B55;
+}
+.dropdown_menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width:100%;
+    background-color: #323B55;
+    font-size: 14px;
+    display: none;
+}
+.sub_menu_item{
+	color: #fff;
+}
+.operate_create{
+	margin-left: 190px;
+}
+.operate_query{
+	margin-left: 310px;
+}
+
+.create .dropdown_menu ul,.select .dropdown_menu ul{
+	float: left;
+	margin-bottom: 20px;
+}
+.select .dropdown_menu, .user_info_list .dropdown_menu{
+	height: 71px;
+}
+
+.export .dropdown_menu ul li{
+	float: left;
+	width: 150px;
+	text-align: left;
+}
+
+/*查询遮罩层*/
+#check_modal{
+	position: fixed;
+	top: 25%;
+	left: 20%;
+	background-color: #fff;
+	width: 60%;
+	height: 50%;
+	display: none;
+}
+#check_modal #select_gweui{
+	float: left;
+	text-align: center;
+	margin-left: 20px;
+	height:30px; 
+	border-radius: 30px;
+	background-color: #30A0D5; 
+	border: none;
+	color: #fff;
+	width: 50px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+#check_modal label, #check_modal input{
+	margin-top: 3px;
+	float: left;
+	height: 20px;
+}
+#check_modal label{
+	text-align: left;
+	line-height: 20px;
+	margin-right: 10px;
+}
+
+.sub_menu_list{
+    list-style: none;
+    display: inline-block;
+}
+.sub_menu_list li{
+    width: 100%;
+    margin-top: 10px;
+    line-height: 20px;
+    padding: 5px 0px 0px;
+    text-align: left;
+}
+a{
+	cursor: pointer;
+}
+.sub_menu_list li input, .sub_menu_list li select{
+	width: 150px;
+	height: 30px;
+	color: #434A5E;
+	background: rgba(black, .16);	
+	border-radius: 5px;
+}
+.sub_menu_list li input{
+	width: 147px;
+}
+.sub_menu_list li label{
+	float: left;
+	width: 70px;
+	text-align: right;
+	line-height: 30px;
+	margin-right: 10px;
+}
+#confirm, #query{
+	float: right;
+	margin-top: 5px;
+	margin-left: 20px;
+	height:30px; 
+	border-radius: 10px;
+	background-color: #30A0D5; 
+	border: none;
+	color: #fff;
+	width: 60px;
+	font-family: "microsoft yahei", Arial;
+	line-height: 20px;
+	cursor: pointer;
+
+}
+
+.table{
+	width: 70%;
+	text-align: center;
+	margin: 100px auto;
+	font-size:14px;
+	color:#333;
+	border: 1px solid #000;
+	border-collapse: collapse;
+	z-index: 100000;
+}
+.table th{
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+	background-color: #30A0D5;
+}
+.table td{
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+.table tr:nth-child(odd){
+	background-color: #d4e3e5;
+}
+.table tr:nth-child(even){
+	background-color: #c3dde0; 
+}
+#gweui tr{
+	background-color: #d4e3e5;
+}
+
+/*遮罩层上的表格div与查询的div*/
+#gweui_info{
+	width: 950px;
+	height: 500px;
+	z-index: 99999;
+	background-color: #fff;
+    margin: auto;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+#gweui_info .table_scroll{
+	margin-top: 50px;
+	width: 90%;
+	height: 80%;
+	margin-left: 5%;
+	overflow-y: auto;
+}
+#gweui_info .table{
+	margin: 0;
+	width: 100%;
+}
+#gweui_info #export_log_info{
+	float:right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 5%;
+	text-align: center;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 30px;
+	color: #fff;
+	background-color: #30A0D5;
+	border: none;
+	cursor: pointer;
+}
+#gweui_info .table caption{
+	height: 40px;
+	border: none;
+	font-size: 16px;
+	line-height: 40px;
+	background-color: #30A0D5;
+}
+#gweui_info .table th{
+	background-color: #c3dde0;
+}
+.cover tbody tr{
+	cursor: pointer;
+}
+/*遮罩层*/
+#cover{
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	background: #000 none repeat scroll 0% 0%;
+}
+
+#gweui_info div span{
+	background-image: url(../img/ad-arraw.png);
+	background-repeat: no-repeat;
+	width: 25px;
+	height: 35px;
+}
+#gweui_info div span:hover{
+	background-image:url(../img/ad-arraw-hover.png);
+	cursor: pointer;
+}
+#gweui_info .preview{
+	float: left;
+	width: 25px;
+	height: 100%;
+}
+#gweui_info .next{
+	float: right;
+	width: 25px;
+	height: 100%;
+}
+#gweui_info .preview span, #gweui_info .preview span:hover, #gweui_info .next span, #gweui_info .next span:hover{
+	cursor: pointer;
+	position: absolute;
+	top: 47%;
+}
+#gweui_info .next span, #gweui_info .next span:hover{
+	background-position: 0 -37px;	
+}
+.disabled{
+   	background-color: #9C9C9C;
+	border-color: #9C9C9C; 
+	cursor: not-allowed;
+}
+/*生成表格和按钮*/
+.data_div{
+	width: 70%;
+	margin: 70px auto 0;
+}
+.data_div ul{
+	float: right;
+}
+.data_div li{
+	margin-top: 20px;
+	display: inline-block;    		
+}
+.data_div .export_btn{
+	width: 70px;
+	display: inline-block;
+	border: 2px solid #30a0d5;
+    background-color: #30a0d5; 
+    color: #fff;
+	line-height: 20px;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 14px;
+	height:30px;
+	margin-left: 10px;
+	line-height: 30px;
+	cursor: pointer;
+}
+.data_div .table{
+	margin-top: 0;
+	width: 100%;
+}
+.query_gweui_div{
+	margin-top: 160px;
+}
+/*修改密码  增加用户*/
+.modify_password, .add_user{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 400px;
+	height: 200px;
+	background-color: #fff;
+	z-index: 999999;
+	display: none;
+}
+.modify_password .form, .add_user .form{
+	width: 90%;
+}
+.form li{
+	padding-top: 10px;
+}
+.modify_password .form li label, .add_user .form li label{
+	display: inline-block;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+}
+.modify_password .form li input, .add_user .form li input{
+	width: 150px;
+	height: 25px;
+	border-radius: 10px;
+}
+.modify_password .form li #modifyPsd, .add_user .form li #add_user{
+	margin-left: 210px;
+	font-family: "microsoft yahei", Arial;
+	width: 70px;
+	height: 30px;
+	line-height: 20px;
+	font-size: 16px;
+	color: #fff;
+	border-radius: 15px;
+	background-color: #30A0D5;
+	border:2px solid #30A0D5;
+}
+.modify_password .form{
+	margin-top: 40px;
+}
+
+/*点击用户弹出的按钮*/
+.user_info li{
+	float: right;
+}
+.user_info li ul{
+	float: right;
+	margin-right: 100px;
+	margin-top: 20px;
+}
+.user_info li ul li{
+	float: left;
+	width: 70px;
+	text-align: center;
+	line-height: 30px;
+}
+.user_info li ul li a{
+	display: inline-block;
+	color: #fff;
+}
+#show_modify_modal, #logOut{
+	text-align: center;
+	font-size: 15px;
+	height:30px; 
+	border-radius: 30px;
+	padding: 0 10px;
+	background-color: #30A0D5; 
+	border: none;
+	color: #fff;
+	width: 60px;
+	font-family: "microsoft yahei", Arial;
+	cursor: pointer;
+}
+#logOut{
+	margin-left: 20px;
+}
+/*管理*/
+.user_add_btn{
+	float: right;
+	margin: 10px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #30A0D5;
+    border: none;
+    color: #fff;
+    font-family: "microsoft yahei", Arial;
+    line-height: 30px;
+    cursor: pointer;
+}
+#manage_table th:last-child, #manage_table tr td:last-child{
+	width: 200px;
+}
+#manage_table tr td{
+	padding: 5px;
+}
+#manage_table tr button{
+	width: 70px;
+	height: 30px;
+	margin-left: 20px;
+    border-radius: 30px;
+    background-color: #30A0D5;
+    border:none;
+    color: #fff;
+    font-family: "microsoft yahei", Arial;
+    cursor: pointer;
+}

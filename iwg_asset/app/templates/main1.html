@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>导出</title>
+<script type="text/javascript" src="static/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+		font-family: "Microsoft Yahei" sans-serif;
+		font-size: 14px;
+		color: #434A5E;
+	}
+
+	header{
+		width: 100%;
+		height: 140px;
+	}
+	#top_main{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 30px;
+		padding: 15px 0;
+		/*margin-top: 15px;*/
+		border: 1px solid #000;
+	}
+	#create_btn, #export_btn{
+		float: left;
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		margin-left: 60px;
+		cursor: pointer;
+		font-size: 15px;
+		background-color: #30A0D5;
+		color: #fff;
+	}
+	#create_btn {
+		margin-left: 20%px;
+	}
+	
+	#login_btn{
+		float: right;
+		width: 100px;
+		height: 30px;
+		margin-right: 7%;
+		line-height: 30px;
+		border: 1px solid #EFEFEF;
+		background-color: #30A0D5;
+		color: #fff;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 50px;
+	}
+
+	#createModal{
+		display: none;
+		position: absolute;
+		top: 80px;
+		border: 1px solid #000;
+		width: 400px;
+		text-align: center;
+		margin-left: 20px;
+		overflow: hidden;
+	}
+
+	#createModal p{
+		margin: 10 0 10px;
+	}
+	#createModal input, #createModal select{
+		width: 150px;
+		height: 30px;
+		color: #434A5E;
+		background: rgba(black, .16);	
+		border-radius: 5px;
+		margin-left: -70px;
+	}
+	
+	
+	#createModal label{
+		float: left;
+		width: 140px;
+		line-height: 30px;
+		text-align: right;
+		letter-spacing: 1px;
+	}
+	.btn{
+		margin-left: 100px;
+	}
+	#confirm, #cancel{
+		float: left;
+		width: 70px;
+		height: 30px;
+		line-height: 30px;
+		border: 1px solid #30A0D5;
+		background-color: #30A0D5;
+		color: #fff;
+		cursor: pointer;
+		font-family: "microsoft yahei";
+		margin-bottom: 20px;
+	}
+	#cancel{
+		margin-left: 40px;
+	}
+	
+	table.key{
+		width: 50%;
+		text-align: center;
+		/*margin: 55px 0 240px 440px; */
+		margin: 100px auto;
+		font-size:14px;
+		color:#333;
+		border: 1px solid #000;
+		border-collapse: collapse;
+		
+	}
+	.key th{
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #a9c6c9;
+		background-color: #30A0D5;
+	}
+	.key td{
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #a9c6c9;
+	}
+	.key tr:nth-child(odd){
+		background-color: #d4e3e5;
+	}
+	.key tr:nth-child(even){
+		background-color: #c3dde0; 
+	}
+
+</style>
+
+</head>
+
+<body>
+	<div id="top_main">
+		<div id="create_btn" onclick="showModal();">创建</div>
+		<div id="export_btn">导出</div>
+		<div id="login_btn">登录名</div>
+	</div>
+	<div id="createModal">
+		<p>
+			<label>OUI:</label>
+			<select id="oui">
+			</select>
+		</p>
+		<p>
+			<label>工作频段:</label>
+			<select id="rate_range">
+			</select>
+		</p>
+		<p>
+			<label>供电方式:</label>
+			<select id="power_type">
+			</select>
+		</p>
+		<p>
+			<label>数据回传:</label>
+			<select id="data_back">
+			</select>
+		</p>
+		<p>
+			<label>生产工厂:</label>
+			<select id="factory">
+			</select>
+		</p>
+		<p>
+			<label>生成数:</label>
+			<input type="text" name="size" id="size" autocomplete="off">
+		</p>
+		<p>
+			<div class="btn">
+				<button id="confirm">确定</button>
+				<button id="cancel" onclick="hideModal();">取消</button>
+			</div>
+		</p>
+	</div>
+
+</body>
+<script type="text/javascript">
+	$("#create_btn").mouseover(function() {
+		$("#createModal").show(300);
+	})
+	$("#create_btn").mouseout(function() {
+	})
+
+
+	function clearInput() {
+		$("#oui").html("");
+		$("#rate_range").html("")
+		$("#power_type").html("");
+		$("#back_data").html("");
+		$("#factory").html("");
+		$("#size").val("20");
+	}
+
+	function showModal() {
+		clearInput();
+		$.ajax({
+			url: "/gweui/define",
+			type: "get",
+			success: function(data, textStatus) {
+				var obj = data.data;
+				var oui = obj.oui;
+				var rate_range = obj.rate_range;
+				var power_type = obj.power_type;
+				var data_back = obj.data_back;
+				var factory = obj.factory;
+				var oui_html = "";
+				var rate_range_html = "";
+				var power_type_html = "";
+				var data_back_html = "";
+				var factory_html = "";
+				for(var i = 0; i < oui.length; i++) {
+					oui_html += '<option value="' + oui[i].value + '">' + oui[i].description + '</option>';
+				}
+				for(var i = 0; i < rate_range.length; i++) {
+					rate_range_html += '<option value="' + rate_range[i].value + '">' + rate_range[i].description + '</option>';
+				}
+				for(var i = 0; i < power_type.length; i++) {
+					power_type_html += '<option value="' + power_type[i].value + '">' + power_type[i].description + '</option>';
+				}
+				for(var i = 0; i < data_back.length; i++) {
+					data_back_html += '<option value="' + data_back[i].value + '">' + data_back[i].description +'</option>';
+				}
+				for(var i = 0; i < factory.length; i++) {
+					factory_html += '<option value="' + factory[i].value + '">' + factory[i].description + '</option>';
+				} 
+				$("#oui").append(oui_html);
+				$("#rate_range").append(rate_range_html);
+				$("#power_type").append(power_type_html);
+				$("#data_back").append(data_back_html);
+				$("#factory").append(factory_html);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("请求字段失败...")
+			}
+		});
+	}
+	function hideModal() {
+		clearInput();
+		$("#createModal").hide(300);
+	}
+	$("#confirm").click(function() {
+		$(".key").remove();
+		var html = "";
+		var oui = $("#oui").val();
+		var rate_range = $("#rate_range").val();
+		var power_type = $("#power_type").val();
+		var data_back = $("#data_back").val();
+		var factory = $("#factory").val();
+		var size = $("#size").val();
+		if (size == 0 || size == null) {
+			$("#confirm").attr('disabled',"disabled");
+		}
+		var create_req = {
+			oui: oui,
+			rate_range: rate_range,
+			power_type: power_type,
+			data_back: data_back,
+			factory: factory,
+			size: size
+		}
+		$.ajax({
+			url: "/gweui/create",
+			type: "post",
+			data: JSON.stringify(create_req),
+			contentType: "application/json",
+			success: function(data, textStatus) {
+				var obj = data.data;
+				var tbody = "";
+				for(var i = 0; i < obj.length; i++) {
+					tbody += "<tr>" +
+								"<td>" + (i+1) + "</td>" +
+								"<td>" + obj[i][0] + "</td>" +
+								"<td>" + obj[i][1] + "</td>" +
+							 "</tr>";
+				}
+				html = "<table class='key'>" +
+							"<thead>" + 
+								"<tr>" +
+									"<th>序号</th>" + 
+									"<th>GWEUI</th>" +
+									"<th>密钥</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody>" + tbody + "</tbody>" +
+						   "</table>";
+				hideModal(300);
+				$("#top_main").after(html);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("数据加载失败...");
+			}
+		});
+	});
+
+	$("#export_btn").click(function() {
+		$.ajax({
+			url: "/gweui/export",
+			type: "get",
+			success:function(data, textStatus) {
+				window.location.href="/gweui/export";
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("导出失败...");
+			}
+		});
+	});
+
+</script>
+</html>

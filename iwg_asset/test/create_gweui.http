@@ -1,0 +1,11 @@
+POST http://10.47.73.103:5000/gweui/create HTTP/1.1
+content-type: application/json
+
+{
+    "oui":"6073BC", 
+    "rate_range":"02",
+    "power_type":"1",
+    "data_back":"2",
+    "factory":"1",
+    "size":"2"
+}

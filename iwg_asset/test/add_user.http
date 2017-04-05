@@ -1,0 +1,8 @@
+POST https://10.47.73.112:5000/user/add HTTP/1.1
+content-type: application/json
+
+{
+    "name":"wangjunwei", 
+    "password":"wangjunwei",
+    "permission_list":"all"
+}

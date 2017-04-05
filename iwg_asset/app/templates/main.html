@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9">
+	<title>IWG资产管理</title>
+	<link rel="stylesheet" type="text/css" href="static/css/main.css"></body>
+	<script type="text/javascript" src="static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="static/js/main.js"></script>
+</head>
+<body>
+	<div class="content">
+		<img class="logo" src="static/img/logo.jpg">
+		<ul class="nav">
+			<li class="create">
+				<a href="#" class="menu">生成GWEUI</a>
+				<div class="dropdown_menu">
+					<div class="sub_menu operate_create">
+						<ul class="sub_menu_list">
+							<li class="sub_menu_item">
+								<label>设备型号:</label>
+								<select id="oui"></select>
+							</li>
+							<li class="sub_menu_item">
+								<label>工作频段:</label>
+								<select id="rate_range"></select>
+							</li>
+							<li class="sub_menu_item">
+								<label>供电方式:</label>
+								<select id="power_type"></select>
+							</li>
+						</ul>
+
+						<ul class="sub_menu_list">
+							<li class="sub_menu_item">
+								<label>数据回传:</label>
+								<select id="data_back"></select>
+							</li>
+							<li class="sub_menu_item">
+								<label>生产工厂:</label>
+								<select id="factory"></select>
+							</li>
+							<li class="sub_menu_item">
+								<label>生成数:</label>
+								<input type="text" id="size" autocomplete="off">
+								<button id="confirm" onclick="create();">确定</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+
+			<li class="select">
+				<a class="menu" id="check">查询</a>
+				<div class="dropdown_menu">
+					<div class="sub_menu operate_query">
+						<ul class="sub_menu_list">
+							<li class="sub_menu_item">
+								<label>GWEUI:</label>
+								<input id="gweui" type="text" >
+								<button id="query" onclick="query();">查询</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			<li class="log">
+				<a id="select_log" onclick="select_log();" class="menu menu_click">日志</a>
+			</li>
+			{% if superman %}
+			<li class="manage">
+				<a id="manage" class="menu" onclick="manage();">管理</a>
+			</li>
+			{% endif %}
+		</ul>
+		<ul class="user_info">
+			<li class="user_info_list">
+				<a href="#" title="" id="user_operation" class="btn menu_logout">{{username}}</a>
+				<div class="dropdown_menu">
+					<div class="sub_menu">
+						<ul>
+							<li>
+								<input id="show_modify_modal" value="修改密码">
+							</li>
+							<li>
+								<a href="/logout" id="logOut">注销</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="modify_password";">
+		<ul class="form">
+			<li>
+				<label>请输入新密码:</label>
+				<input type="password" name="" id="newPsd1" maxlength="12">
+			</li>
+			<li>
+				<label>请再输入新密码:</label>
+				<input type="password" name="" id="newPsd2" maxlength="12">
+			</li>
+			<li>
+				<button type="button" id="modifyPsd">修改</button>
+			</li>
+		</ul>
+	</div>
+
+	<!-- 增加用户 -->
+	<div class="add_user";">
+			<ul class="form">
+				<li>
+					<label>用户名:</label>
+					<input type="text" name="" id="add_username" maxlength="15">
+				</li>
+				<li>
+					<label>请输入密码:</label>
+					<input type="password" name="" id="add_password1" maxlength="12">
+				</li>
+				<li>
+					<label>请再输入密码:</label>
+					<input type="password" name="" id="add_password2" maxlength="12">
+				</li>
+				<li>
+					<button type="button" id="add_user" onclick="add_user();">提交</button>
+				</li>
+			</ul>
+	</div>
+	<!-- 遮罩层 -->
+	<div id="cover"></div>
+
+	<div id="note"><a href="#" target="_blank"></a></div> 
+</html>

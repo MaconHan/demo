@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="router" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/router" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add option="-U__STRICT_ANSI__" />
+					<Add option="-D__TEST1__" />
+					<Add directory="./include" />
+					<Add directory="test/include" />
+					<Add directory="../oss/tcfsworker/include" />
+					<Add directory="../pub/include" />
+					<Add directory="../oss/s10cp/include" />
+					<Add directory="../../3part/poco/Foundation/include" />
+					<Add directory="../../3part/poco/Net/include" />
+					<Add directory="../../3part/gtest/include" />
+					<Add directory="../../3part/json/include" />
+					<Add directory="../../3part/poco/Util/include" />
+					<Add directory="../../3part/poco/Data/include" />
+					<Add directory="../../3part/log4cpp/include" />
+				</Compiler>
+				<Linker>
+					<Add library="PocoNetd" />
+					<Add library="PocoFoundationd" />
+					<Add library="iphlpapi" />
+					<Add library="wsock32" />
+					<Add library="gtestd" />
+					<Add library="jsond" />
+					<Add library="../../3part/poco/lib/windows/libPocoUtild.a" />
+					<Add directory="../../3part/poco/lib/windows" />
+					<Add directory="../../3part/gtest/lib/windows" />
+					<Add directory="../../3part/json/lib/windows" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/AbstractorTelnetTerminal.h" />
+		<Unit filename="include/Configuration.h" />
+		<Unit filename="include/IIOWrapper.h" />
+		<Unit filename="include/ITelnetTerminal.h" />
+		<Unit filename="include/InputCharBuffer.h" />
+		<Unit filename="include/OAMRouterService.h" />
+		<Unit filename="include/ProtocolNegotiator.h" />
+		<Unit filename="include/RESTfulRequestFactory.h" />
+		<Unit filename="include/RESTfulRequestHandler.h" />
+		<Unit filename="include/RESTfulServer.h" />
+		<Unit filename="include/TCFSAdapter.h" />
+		<Unit filename="include/TelnetConst.h" />
+		<Unit filename="include/TelnetHandle.h" />
+		<Unit filename="include/TerminalIOWrapper.h" />
+		<Unit filename="include/TerminalInfo.h" />
+		<Unit filename="include/TerminalMessage.h" />
+		<Unit filename="include/TerminalServer.h" />
+		<Unit filename="include/connection.h" />
+		<Unit filename="include/utf8.h" />
+		<Unit filename="include/utf8/checked.h" />
+		<Unit filename="include/utf8/core.h" />
+		<Unit filename="include/utf8/unchecked.h" />
+		<Unit filename="source/AbstractorTelnetTerminal.cpp" />
+		<Unit filename="source/Configuration.cpp" />
+		<Unit filename="source/InputCharBuffer.cpp" />
+		<Unit filename="source/OAMRouterService.cpp" />
+		<Unit filename="source/ProtocolNegotiator.cpp" />
+		<Unit filename="source/RESTfulRequestFactory.cpp" />
+		<Unit filename="source/RESTfulRequestHandler.cpp" />
+		<Unit filename="source/RESTfulServer.cpp" />
+		<Unit filename="source/TelnetConst.cpp" />
+		<Unit filename="source/TelnetHandle.cpp" />
+		<Unit filename="source/TerminalInfo.cpp" />
+		<Unit filename="source/TerminalMessage.cpp" />
+		<Unit filename="source/main.cpp" />
+		<Unit filename="test/include/Simu_TCFSAdapter.h" />
+		<Unit filename="test/include/test_restful.h" />
+		<Unit filename="test/source/Simu_TCFSAdapter.cpp" />
+		<Unit filename="test/test_main.cpp" />
+		<Unit filename="test/test_restful.cpp" />
+		<Unit filename="test/test_telnet.cpp" />
+		<Unit filename="test/test_terminalmessage.cpp" />
+		<Extensions>
+			<code_completion>
+				<search_path add="..\..\3part\tcfs\include\infra" />
+				<search_path add="..\..\3part\poco\Foundation\include" />
+				<search_path add="..\..\3part\poco\Net\include" />
+				<search_path add="..\..\3part\json\include" />
+				<search_path add="..\..\3part\gtest\include" />
+				<search_path add="include" />
+			</code_completion>
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="1" date_declarations="1" use_define="0" update_manifest="1" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
